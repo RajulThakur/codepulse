@@ -12,10 +12,29 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codepulse-sidebar",
+          "title": "CodePulse",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "codepulse-sidebar": [
+        {
+          "type": "webview",
+          "icon": "media/icon.svg",
+          "id": "codepulse.sidebarView",
+          "name": "CodePulse Assistant"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "codepulse.helloWorld",
-        "title": "Hello World"
+        "title": "Codepulse: "
       }
     ]
   },
