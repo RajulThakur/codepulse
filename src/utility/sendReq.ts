@@ -3,15 +3,6 @@ import path from "path";
 import OpenAI from "openai";
 
 async function sendToGemini(prompt: string): Promise<string> {
-  //   const { GoogleGenAI } = await import("@google/genai");
-  //   const ai = new GoogleGenAI({
-  //     apiKey: "",
-  //   });
-  //   const result = await ai.models.generateContent({
-  //     model: "gemini-2.5-flash",
-  //     contents: prompt,
-  //     config: geminiConfig,
-  //   });
   const openai = new OpenAI({
     apiKey: "",
     baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
