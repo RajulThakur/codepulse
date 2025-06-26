@@ -7,8 +7,14 @@ import {
   WebviewView,
   WebviewViewProvider,
   WebviewViewResolveContext,
+  window,
 } from "vscode";
-import { handlePromptWithFiles, sendRequestToGemini } from "../utility/sendReq";
+import {
+  applyCode,
+  handlePromptWithFiles,
+  sendRequestToGemini,
+} from "../utility/sendReq";
+import { ChatStore } from "../utility/storing";
 
 export class CodePulseSidebarProvider implements WebviewViewProvider {
   constructor(
@@ -32,15 +38,59 @@ export class CodePulseSidebarProvider implements WebviewViewProvider {
 
     webviewView.webview.onDidReceiveMessage(async (msg) => {
       console.log("Received message in webview:", msg);
+      const chatStore = new ChatStore(this.extensionContext);
+
+      const { data } = msg;
       switch (msg.type) {
         case "files-prompt":
-            await handlePromptWithFiles(msg, webviewView);
+          chatStore.addChat({ isUser: true, text: msg.data.prompt });
+
+          const reply = await handlePromptWithFiles(data, webviewView);
+          // 🔁 Return back to the WebView
+          webviewView.webview.postMessage({
+            type: "files-prompt",
+            prompt: msg.prompt,
+            response: reply,
+          });
+          chatStore.addChat({ isUser: false, text: reply });
           break;
         case "send-request":
-          await sendRequestToGemini(msg.prompt, webviewView); 
+          chatStore.addChat({ isUser: true, text: msg.data.prompt });
 
-    }
-      
+          const response = await sendRequestToGemini(data.prompt, webviewView);
+          chatStore.addChat({ isUser: false, text: response || "" });
+          webviewView.webview.postMessage({
+            type: "send-request",
+            response,
+          });
+
+          break;
+        case "apply-code":
+          await applyCode(
+            data.content,
+            data.filename,
+            data.extension,
+            webviewView
+          );
+          break;
+        case "get-chats":
+          const chats = chatStore.getChats();
+          console.log("Sending chat history:");
+          console.log(chats);
+          webviewView.webview.postMessage({
+            type: "chat-history",
+            response: chats,
+          });
+          break;
+        case "clear-chats":
+          await chatStore.clearChats();
+          webviewView.webview.postMessage({
+            type: "chats-cleared",
+            message: "Chat history cleared.",
+          });
+          window.showInformationMessage("Chat history cleared.");
+          break;
+      }
     });
   }
 
