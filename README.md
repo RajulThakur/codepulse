@@ -1,71 +1,25 @@
-# codepulse README
+# 🔥 Code Pulse — Gemini-Powered AI Assistant for Visual Studio Code
 
-This is the README for your extension "codepulse". After writing up a brief description, we recommend including the following sections.
-
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+**Code Pulse** is an intelligent coding assistant that integrates the **Gemini API** directly into your VS Code environment. It helps you analyze your code, generate new files, refactor existing ones, and automate repetitive tasks — all powered by Google’s Gemini models.
 
 ---
 
-## Following extension guidelines
+## ✨ Features
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+- 🔍 **Send Workspace Context:** Send code selections, files, or your entire project structure to Gemini for context-aware responses.
+- 💬 **Ask Anything:** Request code explanations, bug fixes, or optimizations in plain English.
+- ⚙️ **AI-Powered File Generation:** Create new files in your workspace directly from Gemini's responses.
+- 🔧 **Refactor & Improve Code:** Use Gemini to clean up, optimize, and modernize your code.
+- 📄 **Inline & Sidebar Rendering:** View Gemini's responses as clean, formatted text or code blocks inside VS Code.
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+---
 
-## Working with Markdown
+## 🚀 Usage
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+1. Select some code or open a file you want Gemini to analyze.
+2. Open the **Code Pulse sidebar** or run the **Code Pulse: Ask Gemini** command from the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`).
+3. Enter your query or choose a predefined prompt.
+4. View the AI-generated response in the Code Pulse view.
+5. Optionally, apply the suggestion or generate a new file directly in your project.
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+---
